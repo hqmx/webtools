@@ -83,3 +83,4 @@ youtube_cookies.txt
 *.zip
 *.rar
 *.7zconverter/
+.venv/

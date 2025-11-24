@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API - HQMX Downloader</title>
+    <meta name="description" content="HQMX Downloader API documentation. Powerful video download API coming soon.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css?v=20251117g">
+    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
+    <style>
+        .api-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 2px solid rgba(0, 150, 255, 0.8);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.6), 0 0 40px rgba(0, 150, 255, 0.3);
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .api-container h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .api-container p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        .loader {
+            animation: rotate 8s infinite;
+            height: 50px;
+            width: 50px;
+            margin: 2rem auto;
+        }
+        .loader:before,
+        .loader:after {
+            content: "";
+            display: block;
+            height: 20px;
+            width: 20px;
+        }
+        .loader:before {
+            animation: box1 8s infinite;
+            background-color: #667eea;
+            box-shadow: 30px 0 0 #764ba2;
+            margin-bottom: 10px;
+        }
+        .loader:after {
+            animation: box2 8s infinite;
+            background-color: #764ba2;
+            box-shadow: 30px 0 0 #667eea;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg) scale(0.8) }
+            50% { transform: rotate(360deg) scale(1.2) }
+            100% { transform: rotate(720deg) scale(0.8) }
+        }
+
+        @keyframes box1 {
+            0% {
+                box-shadow: 30px 0 0 #764ba2;
+            }
+            50% {
+                box-shadow: 0 0 0 #764ba2;
+                margin-bottom: 0;
+                transform: translate(15px, 15px);
+            }
+            100% {
+                box-shadow: 30px 0 0 #764ba2;
+                margin-bottom: 10px;
+            }
+        }
+
+        @keyframes box2 {
+            0% {
+                box-shadow: 30px 0 0 #667eea;
+            }
+            50% {
+                box-shadow: 0 0 0 #667eea;
+                margin-top: -20px;
+                transform: translate(15px, 15px);
+            }
+            100% {
+                box-shadow: 30px 0 0 #667eea;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Header -->
+        <nav class="top-nav">
+            <div class="nav-container">
+            <div class="nav-left">
+                <a href="/" class="downloader-logo-link">
+                    <div class="downloader-logo">
+                        <span class="downloader-text"><span class="downloader-d">D</span><span class="downloader-rest">OWNLOADER</span></span>
+                    </div>
+                </a>
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/how-to-use.html" class="nav-link">How to Use</a>
+                    <a href="/faq.html" class="nav-link">FAQ</a>
+                    <a href="/sitemap.html" class="nav-link">Site Map</a>
+                    <a href="/app.html" class="nav-link">App</a>
+                </div>
+            </div>
+
+            <div class="nav-center">
+                <button class="hamburger-menu" id="hamburgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                    <div class="mobile-menu-box">
+                        <div class="mobile-menu-links">
+                            <a href="/" class="mobile-menu-link">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                            <a href="/how-to-use.html" class="mobile-menu-link">
+                                <i class="fas fa-question-circle"></i> How to Use
+                            </a>
+                            <a href="/faq.html" class="mobile-menu-link">
+                                <i class="fas fa-comments"></i> FAQ
+                            </a>
+                            <a href="/sitemap.html" class="mobile-menu-link">
+                                <i class="fas fa-sitemap"></i> Site Map
+                            </a>
+                            <a href="/app.html" class="mobile-menu-link">
+                                <i class="fas fa-desktop"></i> App
+                            </a>
+                        </div>
+
+                        <div class="mobile-menu-controls">
+                            <div class="mobile-control-item menu-divider">
+                                <button id="mobileThemeToggleBtn" class="mobile-theme-toggle-btn">
+                                    <i class="fas fa-sun"></i>
+                                    <i class="fas fa-moon"></i>
+                                </button>
+                                <button id="mobileLanguageSelectorBtn" class="mobile-language-selector-btn">
+                                    <i class="fas fa-globe"></i>
+                                    <span id="mobileCurrentLanguage">EN</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <button id="themeToggleBtn" class="theme-toggle-btn">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageSelectorBtn" class="language-selector-btn">
+                    <i class="fas fa-globe"></i>
+                    <span id="currentLanguage">EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            </div> <!-- /nav-container -->
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <div class="api-container">
+                <h1>HQMX Downloader API</h1>
+                <p>Coming Soon</p>
+                <div class="loader"></div>
+                <p>We are working on a powerful video download API. Stay tuned!</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid var(--border-color);">
+            <p>
+                <span>&copy; 2024 HQMX. All Rights Reserved.</span>
+                <span class="footer-contact"> • support@hqmx.net</span>
+            </p>
+        </footer>
+    </div>
+
+    <script src="/script.js?v=20251117g"></script>
+</body>
+</html>

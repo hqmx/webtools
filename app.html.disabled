@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQMX Desktop App - Download Free 4K Downloader</title>
+    <meta name="description" content="Download HQMX Desktop App for Windows, macOS, and Linux. Free 4K downloader with offline support and 1000+ platform compatibility.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css?v=20251117g">
+    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Header -->
+        <nav class="top-nav">
+            <div class="nav-container">
+            <div class="nav-left">
+                <a href="/" class="downloader-logo-link">
+                    <div class="downloader-logo">
+                        <span class="downloader-text"><span class="downloader-d">D</span><span class="downloader-rest">OWNLOADER</span></span>
+                    </div>
+                </a>
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/how-to-use.html" class="nav-link">How to Use</a>
+                    <a href="/faq.html" class="nav-link">FAQ</a>
+                    <a href="/sitemap.html" class="nav-link">Site Map</a>
+                    <a href="/app.html" class="nav-link active desktop-app-link">App</a>
+                </div>
+            </div>
+
+            <div class="nav-center">
+                <button class="hamburger-menu" id="hamburgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                    <div class="mobile-menu-box">
+                        <div class="mobile-menu-links">
+                            <a href="/" class="mobile-menu-link">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                            <a href="/how-to-use.html" class="mobile-menu-link">
+                                <i class="fas fa-question-circle"></i> How to Use
+                            </a>
+                            <a href="/faq.html" class="mobile-menu-link">
+                                <i class="fas fa-comments"></i> FAQ
+                            </a>
+                            <a href="/sitemap.html" class="mobile-menu-link">
+                                <i class="fas fa-sitemap"></i> Site Map
+                            </a>
+                            <a href="/app.html" class="mobile-menu-link">
+                                <i class="fas fa-desktop"></i> App
+                            </a>
+                        </div>
+
+                        <div class="mobile-menu-controls">
+                            <div class="mobile-control-item menu-divider">
+                                <button id="mobileThemeToggleBtn" class="mobile-theme-toggle-btn">
+                                    <i class="fas fa-sun"></i>
+                                    <i class="fas fa-moon"></i>
+                                </button>
+                                <button id="mobileLanguageSelectorBtn" class="mobile-language-selector-btn">
+                                    <i class="fas fa-globe"></i>
+                                    <span id="mobileCurrentLanguage">EN</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <button id="themeToggleBtn" class="theme-toggle-btn">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageSelectorBtn" class="language-selector-btn">
+                    <i class="fas fa-globe"></i>
+                    <span id="currentLanguage">EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            </div> <!-- /nav-container -->
+        </nav>
+
+        <!-- Main Content -->
+        <main style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+            <h1 style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">HQMX Desktop App</h1>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 3rem;">
+                Free 4K Downloader for Windows, macOS, and Linux
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem;">
+                <!-- Windows Download -->
+                <div style="background: var(--card-bg); border-radius: 20px; padding: 2rem; text-align: center; border: 2px solid rgba(0, 150, 255, 0.8); box-shadow: 0 0 20px rgba(0, 150, 255, 0.6), 0 0 40px rgba(0, 150, 255, 0.3);">
+                    <i class="fab fa-windows" style="font-size: 4rem; color: #0078D4; margin-bottom: 1rem;"></i>
+                    <h2>Windows</h2>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">Windows 7/8/10/11 (64-bit, 32-bit)</p>
+                    <a href="https://install.hqmx.net/v1.0-free/HQMX%20Downloader%20Setup%201.0.0.exe"
+                       style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 1rem;">
+                        <i class="fas fa-download"></i> Download (173 MB)
+                    </a>
+                </div>
+
+                <!-- macOS Download -->
+                <div style="background: var(--card-bg); border-radius: 20px; padding: 2rem; text-align: center; border: 2px solid rgba(0, 150, 255, 0.8); box-shadow: 0 0 20px rgba(0, 150, 255, 0.6), 0 0 40px rgba(0, 150, 255, 0.3);">
+                    <i class="fab fa-apple" style="font-size: 4rem; color: #999; margin-bottom: 1rem;"></i>
+                    <h2>macOS</h2>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">macOS 10.13+ (Intel & Apple Silicon)</p>
+                    <a href="https://install.hqmx.net/v1.0-free/HQMX%20Downloader-1.0.0.dmg"
+                       style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 1rem;">
+                        <i class="fas fa-download"></i> Intel (132 MB)
+                    </a>
+                    <br>
+                    <a href="https://install.hqmx.net/v1.0-free/HQMX%20Downloader-1.0.0-arm64.dmg"
+                       style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 1rem;">
+                        <i class="fas fa-download"></i> ARM64 (127 MB)
+                    </a>
+                </div>
+
+                <!-- Linux Download -->
+                <div style="background: var(--card-bg); border-radius: 20px; padding: 2rem; text-align: center; border: 2px solid rgba(0, 150, 255, 0.8); box-shadow: 0 0 20px rgba(0, 150, 255, 0.6), 0 0 40px rgba(0, 150, 255, 0.3);">
+                    <i class="fab fa-linux" style="font-size: 4rem; color: #FCC624; margin-bottom: 1rem;"></i>
+                    <h2>Linux</h2>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">Ubuntu 18.04+, Debian 10+, Fedora 30+</p>
+                    <a href="https://install.hqmx.net/v1.0-free/HQMX%20Downloader-1.0.0.AppImage"
+                       style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 1rem;">
+                        <i class="fas fa-download"></i> AppImage (104 MB)
+                    </a>
+                    <br>
+                    <a href="https://install.hqmx.net/v1.0-free/hqmx-downloader_1.0.0_amd64.deb"
+                       style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 1rem;">
+                        <i class="fas fa-download"></i> DEB (74 MB)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 2rem;">Main Features</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                <div style="text-align: center;">
+                    <i class="fas fa-globe" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>1000+ Platforms</h3>
+                    <p style="color: var(--text-secondary);">YouTube, Instagram, Facebook, TikTok, and more</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-hdd" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Offline Support</h3>
+                    <p style="color: var(--text-secondary);">No internet connection required after installation</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-video" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>4K Quality</h3>
+                    <p style="color: var(--text-secondary);">Download up to 4K resolution</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-file" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Multiple Formats</h3>
+                    <p style="color: var(--text-secondary);">MP4, MKV, WEBM, MOV, MP3, M4A, FLAC, WAV</p>
+                </div>
+            </div>
+
+            <!-- Installation Guide -->
+            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 2rem;">Installation Guide</h2>
+            <div style="background: var(--card-bg); border-radius: 20px; padding: 2rem; margin-bottom: 2rem;">
+                <h3><i class="fab fa-windows"></i> Windows</h3>
+                <ol style="line-height: 2;">
+                    <li>Download the installer (.exe)</li>
+                    <li>Run the installer</li>
+                    <li>Click "More info" → "Run anyway" if SmartScreen appears</li>
+                    <li>Follow installation wizard</li>
+                </ol>
+            </div>
+
+            <div style="background: var(--card-bg); border-radius: 20px; padding: 2rem; margin-bottom: 2rem;">
+                <h3><i class="fab fa-apple"></i> macOS</h3>
+                <ol style="line-height: 2;">
+                    <li>Download the DMG file (Intel or ARM64)</li>
+                    <li>Open the DMG file</li>
+                    <li>Drag HQMX Downloader to Applications folder</li>
+                    <li>Right-click → Open to bypass Gatekeeper (first launch only)</li>
+                </ol>
+                <p style="margin-top: 1rem; padding: 1rem; background: rgba(255,193,7,0.1); border-left: 4px solid #FFC107; border-radius: 8px;">
+                    <strong>Note:</strong> If you see "unidentified developer" warning, run:
+                    <code style="background: rgba(0,0,0,0.1); padding: 0.2rem 0.5rem; border-radius: 4px;">
+                        xattr -cr "/Applications/HQMX Downloader.app"
+                    </code>
+                </p>
+            </div>
+
+            <div style="background: var(--card-bg); border-radius: 20px; padding: 2rem; margin-bottom: 2rem;">
+                <h3><i class="fab fa-linux"></i> Linux</h3>
+                <h4>AppImage:</h4>
+                <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>chmod +x HQMX\ Downloader-1.0.0.AppImage
+./HQMX\ Downloader-1.0.0.AppImage</code></pre>
+
+                <h4 style="margin-top: 1.5rem;">Debian/Ubuntu (.deb):</h4>
+                <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>sudo dpkg -i hqmx-downloader_1.0.0_amd64.deb
+sudo apt-get install -f</code></pre>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid var(--border-color);">
+            <p>
+                <span>&copy; 2024 HQMX. All Rights Reserved.</span>
+                <span class="footer-contact"> • support@hqmx.net</span>
+            </p>
+        </footer>
+    </div>
+
+    <script src="/script.js?v=20251114"></script>
+</body>
+</html>
