@@ -1,194 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API - HQMX Downloader</title>
-    <meta name="description" content="HQMX Downloader API documentation. Powerful video download API coming soon.">
+    <title>API Documentation - HQMX</title>
+    <meta name="description" content="HQMX API documentation. Access our powerful Converter and Downloader APIs.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/style.css?v=20251117g">
     <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
     <style>
-        .api-container {
-            max-width: 900px;
-            margin: 4rem auto;
-            padding: 3rem;
-            background: var(--card-bg);
-            border-radius: 20px;
-            border: 2px solid rgba(0, 150, 255, 0.8);
-            box-shadow: 0 0 20px rgba(0, 150, 255, 0.6), 0 0 40px rgba(0, 150, 255, 0.3);
-            text-align: center;
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
-        .api-container h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+
+        .api-docs {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .api-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .api-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .api-hero p {
+            font-size: 1.35rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-top: 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #667eea;
+            font-size: 2rem;
+        }
+
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .api-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .api-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .api-card h3 {
+            color: #667eea;
+            font-size: 1.75rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .api-card h3 i {
+            font-size: 1.5rem;
+        }
+
+        .api-card .features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .api-card .features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .api-card .features li i {
+            color: #10b981;
+        }
+
+        .api-card .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .api-card .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .endpoint-preview {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: var(--card-bg);
+        }
+
+        .pricing-card.featured {
+            border-color: #667eea;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 1.75rem;
+        }
+
+        .pricing-card .price {
+            font-size: 2.75rem;
+            font-weight: bold;
+            margin: 1rem 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
-        .api-container p {
-            font-size: 1.25rem;
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-card ul li {
+            padding: 0.5rem 0;
+        }
+
+        .pricing-card ul li i {
+            color: #10b981;
+            margin-right: 0.5rem;
+        }
+
+        .cta-button-large {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+            margin-top: 1rem;
+        }
+
+        .cta-button-large:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-cta h2 {
+            color: white;
+            border: none;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: var(--text-secondary);
-        }
-        .loader {
-            animation: rotate 8s infinite;
-            height: 50px;
-            width: 50px;
-            margin: 2rem auto;
-        }
-        .loader:before,
-        .loader:after {
-            content: "";
-            display: block;
-            height: 20px;
-            width: 20px;
-        }
-        .loader:before {
-            animation: box1 8s infinite;
-            background-color: #667eea;
-            box-shadow: 30px 0 0 #764ba2;
-            margin-bottom: 10px;
-        }
-        .loader:after {
-            animation: box2 8s infinite;
-            background-color: #764ba2;
-            box-shadow: 30px 0 0 #667eea;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg) scale(0.8) }
-            50% { transform: rotate(360deg) scale(1.2) }
-            100% { transform: rotate(720deg) scale(0.8) }
-        }
-
-        @keyframes box1 {
-            0% {
-                box-shadow: 30px 0 0 #764ba2;
-            }
-            50% {
-                box-shadow: 0 0 0 #764ba2;
-                margin-bottom: 0;
-                transform: translate(15px, 15px);
-            }
-            100% {
-                box-shadow: 30px 0 0 #764ba2;
-                margin-bottom: 10px;
-            }
-        }
-
-        @keyframes box2 {
-            0% {
-                box-shadow: 30px 0 0 #667eea;
-            }
-            50% {
-                box-shadow: 0 0 0 #667eea;
-                margin-top: -20px;
-                transform: translate(15px, 15px);
-            }
-            100% {
-                box-shadow: 30px 0 0 #667eea;
-                margin-top: 0;
-            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Navigation Header -->
         <nav class="top-nav">
             <div class="nav-container">
-            <div class="nav-left">
-                <a href="/" class="downloader-logo-link">
-                    <div class="downloader-logo">
-                        <span class="downloader-text"><span class="downloader-d">D</span><span class="downloader-rest">OWNLOADER</span></span>
-                    </div>
-                </a>
-                <div class="nav-links">
-                    <a href="/" class="nav-link">Home</a>
-                    <a href="/how-to-use.html" class="nav-link">How to Use</a>
-                    <a href="/faq.html" class="nav-link">FAQ</a>
-                    <a href="/sitemap.html" class="nav-link">Site Map</a>
-                    <a href="/app.html" class="nav-link">App</a>
-                </div>
-            </div>
-
-            <div class="nav-center">
-                <button class="hamburger-menu" id="hamburgerMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                    <div class="mobile-menu-box">
-                        <div class="mobile-menu-links">
-                            <a href="/" class="mobile-menu-link">
-                                <i class="fas fa-home"></i> Home
-                            </a>
-                            <a href="/how-to-use.html" class="mobile-menu-link">
-                                <i class="fas fa-question-circle"></i> How to Use
-                            </a>
-                            <a href="/faq.html" class="mobile-menu-link">
-                                <i class="fas fa-comments"></i> FAQ
-                            </a>
-                            <a href="/sitemap.html" class="mobile-menu-link">
-                                <i class="fas fa-sitemap"></i> Site Map
-                            </a>
-                            <a href="/app.html" class="mobile-menu-link">
-                                <i class="fas fa-desktop"></i> App
-                            </a>
+                <div class="nav-left">
+                    <a href="/" class="downloader-logo-link">
+                        <div class="downloader-logo">
+                            <span class="downloader-text"><span class="downloader-d">H</span><span
+                                    class="downloader-rest">QMX</span></span>
                         </div>
+                    </a>
+                    <div class="nav-links">
+                        <a href="/" class="nav-link">Home</a>
+                        <a href="/api.html" class="nav-link active">API</a>
+                    </div>
+                </div>
 
-                        <div class="mobile-menu-controls">
-                            <div class="mobile-control-item menu-divider">
-                                <button id="mobileThemeToggleBtn" class="mobile-theme-toggle-btn">
-                                    <i class="fas fa-sun"></i>
-                                    <i class="fas fa-moon"></i>
-                                </button>
-                                <button id="mobileLanguageSelectorBtn" class="mobile-language-selector-btn">
-                                    <i class="fas fa-globe"></i>
-                                    <span id="mobileCurrentLanguage">EN</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
+                <div class="nav-center">
+                    <button class="hamburger-menu" id="hamburgerMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                        <div class="mobile-menu-box">
+                            <div class="mobile-menu-links">
+                                <a href="/" class="mobile-menu-link">
+                                    <i class="fas fa-home"></i> Home
+                                </a>
+                                <a href="/api.html" class="mobile-menu-link active">
+                                    <i class="fas fa-code"></i> API
+                                </a>
+                            </div>
+
+                            <div class="mobile-menu-controls">
+                                <div class="mobile-control-item menu-divider">
+                                    <button id="mobileThemeToggleBtn" class="mobile-theme-toggle-btn">
+                                        <i class="fas fa-sun"></i>
+                                        <i class="fas fa-moon"></i>
+                                    </button>
+                                    <button id="mobileLanguageSelectorBtn" class="mobile-language-selector-btn">
+                                        <i class="fas fa-globe"></i>
+                                        <span id="mobileCurrentLanguage">EN</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="nav-right">
-                <button id="themeToggleBtn" class="theme-toggle-btn">
-                    <i class="fas fa-sun"></i>
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button id="languageSelectorBtn" class="language-selector-btn">
-                    <i class="fas fa-globe"></i>
-                    <span id="currentLanguage">EN</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-            </div>
+                <div class="nav-right">
+                    <button id="themeToggleBtn" class="theme-toggle-btn">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="languageSelectorBtn" class="language-selector-btn">
+                        <i class="fas fa-globe"></i>
+                        <span id="currentLanguage">EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
             </div> <!-- /nav-container -->
         </nav>
 
         <!-- Main Content -->
         <main>
-            <div class="api-container">
-                <h1>HQMX Downloader API</h1>
-                <p>Coming Soon</p>
-                <div class="loader"></div>
-                <p>We are working on a powerful video download API. Stay tuned!</p>
+            <div class="api-docs">
+                <!-- Hero Section -->
+                <div class="api-hero">
+                    <h1><i class="fas fa-cloud"></i> HQMX API Suite</h1>
+                    <p>Powerful APIs for file conversion and video downloading. Build amazing applications with our
+                        robust infrastructure.</p>
+                </div>
+
+                <!-- API Services -->
+                <div class="section">
+                    <h2><i class="fas fa-server"></i> Our API Services</h2>
+
+                    <div class="api-grid">
+                        <!-- Converter API -->
+                        <div class="api-card">
+                            <h3><i class="fas fa-exchange-alt"></i> Converter API</h3>
+                            <p>Convert files between different formats programmatically. Support for images, documents,
+                                videos, and audio files.</p>
+
+                            <div class="endpoint-preview">
+                                POST https://api.hqmx.net/converter/convert
+                            </div>
+
+                            <ul class="features">
+                                <li><i class="fas fa-check-circle"></i> 100+ file formats supported</li>
+                                <li><i class="fas fa-check-circle"></i> High-quality conversions</li>
+                                <li><i class="fas fa-check-circle"></i> Fast processing</li>
+                                <li><i class="fas fa-check-circle"></i> RESTful API</li>
+                            </ul>
+
+                            <a href="https://converter.hqmx.net/api.html" class="cta-button">View Documentation</a>
+                        </div>
+
+                        <!-- Downloader API -->
+                        <div class="api-card">
+                            <h3><i class="fas fa-download"></i> Downloader API</h3>
+                            <p>Download videos from 1000+ platforms including YouTube, TikTok, Instagram, and more.</p>
+
+                            <div class="endpoint-preview">
+                                POST https://api.hqmx.net/downloader/download
+                            </div>
+
+                            <ul class="features">
+                                <li><i class="fas fa-check-circle"></i> 1000+ platforms supported</li>
+                                <li><i class="fas fa-check-circle"></i> Multiple quality options</li>
+                                <li><i class="fas fa-check-circle"></i> Audio extraction</li>
+                                <li><i class="fas fa-check-circle"></i> Metadata retrieval</li>
+                            </ul>
+
+                            <a href="https://downloader.hqmx.net/api.html" class="cta-button">View Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Start -->
+                <div class="section">
+                    <h2><i class="fas fa-rocket"></i> Quick Start</h2>
+
+                    <h3>1. Choose Your API</h3>
+                    <p>Select the API that fits your needs (Converter or Downloader).</p>
+
+                    <h3>2. Start Making Requests</h3>
+                    <p>No registration required for free tier! Just start making API calls:</p>
+
+                    <div class="endpoint-preview">
+                        # Example: Download a video
+                        curl -X POST https://api.hqmx.net/downloader/download \
+                        -H "Content-Type: application/json" \
+                        -d '{"url": "https://www.youtube.com/watch?v=example"}' \
+                        --output video.mp4
+                    </div>
+
+                    <h3>3. Need More? Contact Us</h3>
+                    <p>Free tier gives you 28 requests per day. For higher limits or custom solutions, reach out to
+                        <strong>support@hqmx.net</strong>.</p>
+                </div>
+
+                <!-- Pricing -->
+                <div class="pricing-section">
+                    <h2 style="text-align: center; color: #667eea; font-size: 2.5rem;"><i class="fas fa-tags"></i>
+                        Pricing</h2>
+                    <p style="text-align: center; font-size: 1.2rem; color: var(--text-secondary);">Choose the plan that
+                        works for you</p>
+
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Free Tier</h3>
+                            <div class="price">
+                                $0<small>/month</small>
+                            </div>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 28 requests/day</li>
+                                <li><i class="fas fa-check"></i> Both APIs included</li>
+                                <li><i class="fas fa-check"></i> All features</li>
+                                <li><i class="fas fa-check"></i> Community support</li>
+                            </ul>
+                            <a href="#" class="cta-button-large"
+                                onclick="alert('No registration needed! Just start using the API.'); return false;">Start
+                                Free</a>
+                        </div>
+
+                        <div class="pricing-card featured">
+                            <h3>Enterprise</h3>
+                            <div class="price">
+                                Custom
+                            </div>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Unlimited requests</li>
+                                <li><i class="fas fa-check"></i> Priority processing</li>
+                                <li><i class="fas fa-check"></i> Dedicated support</li>
+                                <li><i class="fas fa-check"></i> 99.9% SLA</li>
+                                <li><i class="fas fa-check"></i> Custom integration</li>
+                                <li><i class="fas fa-check"></i> White-label option</li>
+                            </ul>
+                            <a href="mailto:support@hqmx.net?subject=Enterprise API Inquiry"
+                                class="cta-button-large">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="section">
+                    <h2><i class="fas fa-star"></i> Why Choose HQMX APIs?</h2>
+
+                    <div class="api-grid">
+                        <div>
+                            <h3><i class="fas fa-bolt"></i> Fast & Reliable</h3>
+                            <p>Built on robust infrastructure with Cloudflare CDN and AWS EC2 for optimal performance
+                                worldwide.</p>
+                        </div>
+                        <div>
+                            <h3><i class="fas fa-shield-alt"></i> Secure</h3>
+                            <p>All API traffic is encrypted with HTTPS. We don't store your files permanently.</p>
+                        </div>
+                        <div>
+                            <h3><i class="fas fa-code"></i> Developer Friendly</h3>
+                            <p>Simple RESTful API design with comprehensive documentation and code examples.</p>
+                        </div>
+                        <div>
+                            <h3><i class="fas fa-headset"></i> Support</h3>
+                            <p>Email support for all users. Enterprise customers get dedicated support with SLA.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact CTA -->
+                <div class="contact-cta">
+                    <h2><i class="fas fa-envelope"></i> Ready to Get Started?</h2>
+                    <p>Start using our APIs for free, or contact us for custom enterprise solutions.</p>
+                    <div>
+                        <a href="https://converter.hqmx.net/api.html" class="cta-button-large"
+                            style="margin: 0.5rem;">Converter API</a>
+                        <a href="https://downloader.hqmx.net/api.html" class="cta-button-large"
+                            style="margin: 0.5rem;">Downloader API</a>
+                        <a href="mailto:support@hqmx.net" class="cta-button-large"
+                            style="margin: 0.5rem; background: white; color: #667eea;">Contact Us</a>
+                    </div>
+                </div>
             </div>
         </main>
 
         <!-- Footer -->
-        <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid var(--border-color);">
+        <footer
+            style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid var(--border-color);">
             <p>
                 <span>&copy; 2024 HQMX. All Rights Reserved.</span>
                 <span class="footer-contact"> • support@hqmx.net</span>
@@ -198,4 +477,5 @@
 
     <script src="/script.js?v=20251117g"></script>
 </body>
+
 </html>
