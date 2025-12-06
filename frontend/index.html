@@ -380,6 +380,84 @@
                     </a>
                 </div>
 
+                <!-- Generator Links Navigation -->
+                <div class="generator-links-nav">
+                    <a href="/generator/qr-code.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="QR Code Generator">
+                            <i class="fas fa-qrcode"></i>
+                        </button>
+                    </a>
+                    <a href="/generator/password.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Password Generator">
+                            <i class="fas fa-key"></i>
+                        </button>
+                    </a>
+                    <a href="/generator/uuid.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="UUID Generator">
+                            <i class="fas fa-id-badge"></i>
+                        </button>
+                    </a>
+                    <a href="/generator/hash.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Hash Generator">
+                            <i class="fas fa-hashtag"></i>
+                        </button>
+                    </a>
+                    <a href="/generator/barcode.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Barcode Generator">
+                            <i class="fas fa-barcode"></i>
+                        </button>
+                    </a>
+                    <a href="/generator/lorem-ipsum.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Lorem Ipsum Generator">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                    </a>
+                    <a href="/generator/word-counter.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Word Counter">
+                            <i class="fas fa-file-word"></i>
+                        </button>
+                    </a>
+                    <a href="/generator/color-picker.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Color Picker">
+                            <i class="fas fa-eye-dropper"></i>
+                        </button>
+                    </a>
+                </div>
+
+                <!-- Calculator Links Navigation -->
+                <div class="calculator-links-nav">
+                    <a href="/calculator/health/bmi-calculator.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="BMI Calculator">
+                            <i class="fas fa-weight"></i>
+                        </button>
+                    </a>
+                    <a href="/calculator/general/percentage-calculator.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Percentage Calculator">
+                            <i class="fas fa-percent"></i>
+                        </button>
+                    </a>
+                    <a href="/calculator/date-time/age-calculator.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Age Calculator">
+                            <i class="fas fa-birthday-cake"></i>
+                        </button>
+                    </a>
+                    <a href="/calculator/health/calorie-calculator.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Calorie Calculator">
+                            <i class="fas fa-fire"></i>
+                        </button>
+                    </a>
+                    <a href="/calculator/general/basic-calculator.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Basic Calculator">
+                            <i class="fas fa-calculator"></i>
+                        </button>
+                    </a>
+                    <a href="/calculator/date-time/date-calculator.html" class="platform-icon-link">
+                        <button class="platform-icon-btn" title="Date Calculator">
+                            <i class="fas fa-calendar-alt"></i>
+                        </button>
+                    </a>
+                </div>
+
                 <!-- Supported Conversions Section -->
                 <div class="supported-conversions">
                     <p class="section-description">683 conversion combinations across 6 categories • Click any badge to
@@ -2208,28 +2286,71 @@
         });
     </script>
     <script>
+        // --- SHARED HELPER TO CLOSE OTHER PANELS ---
+        function closeOtherPanels(currentPanelName) {
+            // Arrays of panels to manage
+            const panels = {
+                converter: {
+                    nav: document.querySelector('.category-icons-nav'),
+                    btn: document.getElementById('converterExpandBtn'),
+                    items: document.querySelectorAll('.category-icon-btn')
+                },
+                downloader: {
+                    nav: document.querySelector('.platform-icons-nav'),
+                    btn: document.getElementById('downloaderExpandBtn'),
+                    items: document.querySelectorAll('.platform-icon-btn')
+                },
+                generator: {
+                    nav: document.querySelector('.generator-links-nav'),
+                    btn: document.getElementById('generatorExpandBtn'),
+                    items: [] // No items to toggle active state for now
+                },
+                calculator: {
+                    nav: document.querySelector('.calculator-links-nav'),
+                    btn: document.getElementById('calculatorExpandBtn'),
+                    items: [] // No items to toggle active state for now
+                }
+            };
+
+            const supportedConversions = document.querySelector('.supported-conversions');
+
+            // Iterate through all panels
+            for (const [name, panel] of Object.entries(panels)) {
+                // If this is the panel we want to keep/toggle, skip closing logic (handled by specific toggle function)
+                if (name === currentPanelName) continue;
+
+                // Close the panel
+                if (panel.nav && panel.nav.classList.contains('show')) {
+                    panel.nav.classList.remove('show');
+                    if (panel.btn) panel.btn.classList.remove('expanded');
+                    if (panel.items.length > 0) {
+                        panel.items.forEach(item => item.classList.remove('active'));
+                    }
+
+                    // Special handling for Converter: Hide badges/categories
+                    if (name === 'converter') {
+                        const allCategories = document.querySelectorAll('.conversion-category');
+                        allCategories.forEach(cat => {
+                            cat.classList.remove('active');
+                            cat.classList.remove('show-badges');
+                        });
+                        if (supportedConversions) {
+                            supportedConversions.style.display = 'none';
+                        }
+                    }
+                }
+            }
+        }
+
         // --- CONVERTER EXPAND FUNCTIONALITY ---
         const converterExpandBtn = document.getElementById('converterExpandBtn');
-        const converterLogoLink = document.querySelector('.sitemap-left .logo-link');
         const categoryIconsNav = document.querySelector('.category-icons-nav');
         const categoryIconBtns = document.querySelectorAll('.category-icon-btn');
         const supportedConversions = document.querySelector('.supported-conversions');
 
-        // Function to toggle category icons
         function toggleCategoryIcons() {
             if (categoryIconsNav) {
-                // Close DOWNLOADER panel if it's open (mutual exclusion)
-                const platformNav = document.querySelector('.platform-icons-nav');
-                const dlExpandBtn = document.getElementById('downloaderExpandBtn');
-                const platformBtns = document.querySelectorAll('.platform-icon-btn');
-
-                if (platformNav && platformNav.classList.contains('show')) {
-                    platformNav.classList.remove('show');
-                    if (dlExpandBtn) {
-                        dlExpandBtn.classList.remove('expanded');
-                    }
-                    platformBtns.forEach(btn => btn.classList.remove('active'));
-                }
+                closeOtherPanels('converter'); // Close others first
 
                 categoryIconsNav.classList.toggle('show');
                 if (converterExpandBtn) {
@@ -2245,7 +2366,6 @@
                     });
                     categoryIconBtns.forEach(btn => btn.classList.remove('active'));
 
-                    // Hide supported conversions when category icons are hidden
                     if (supportedConversions) {
                         supportedConversions.style.display = 'none';
                     }
@@ -2254,7 +2374,6 @@
                     if (supportedConversions) {
                         supportedConversions.style.display = 'block';
                     }
-
                     // Show default category (cross-category) when expanding
                     const defaultCategory = document.querySelector('.conversion-category[data-category="cross-category"]');
                     const defaultCategoryBtn = document.querySelector('.category-icon-btn[data-category="cross-category"]');
@@ -2268,7 +2387,6 @@
             }
         }
 
-        // Converter + button click
         if (converterExpandBtn) {
             converterExpandBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2277,9 +2395,7 @@
             });
         }
 
-        // Converter logo click - Removed (now just a link to hqmx.net)
-
-        // 카테고리 아이콘 버튼 클릭 시 배지 표시
+        // Category icon click handler
         categoryIconBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const category = btn.dataset.category;
@@ -2292,25 +2408,19 @@
                     }
                 }
 
-                // 모든 카테고리 아이콘 버튼에서 active 제거
                 categoryIconBtns.forEach(b => b.classList.remove('active'));
-                // 클릭한 버튼에 active 추가
                 btn.classList.add('active');
 
-                // 모든 카테고리에서 active와 show-badges 제거
                 const allCategories = document.querySelectorAll('.conversion-category');
                 allCategories.forEach(cat => {
                     cat.classList.remove('active');
                     cat.classList.remove('show-badges');
                 });
 
-                // 클릭한 카테고리를 active로 설정하고 배지 표시
                 const targetCategory = document.querySelector(`.conversion-category[data-category="${category}"]`);
                 if (targetCategory) {
                     targetCategory.classList.add('active');
                     targetCategory.classList.add('show-badges');
-
-                    // Show supported conversions section
                     if (supportedConversions) {
                         supportedConversions.style.display = 'block';
                     }
@@ -2320,50 +2430,25 @@
 
         // --- DOWNLOADER EXPAND FUNCTIONALITY ---
         const downloaderExpandBtn = document.getElementById('downloaderExpandBtn');
-        const downloaderLogoLink = document.querySelector('.sitemap-right .logo-link');
         const platformIconsNav = document.querySelector('.platform-icons-nav');
         const platformIconBtns = document.querySelectorAll('.platform-icon-btn');
 
-        // Function to toggle platform icons
+
         function togglePlatformIcons() {
             if (platformIconsNav) {
-                // Close CONVERTER panel if it's open (mutual exclusion)
-                const categoryNav = document.querySelector('.category-icons-nav');
-                const convExpandBtn = document.getElementById('converterExpandBtn');
-                const categoryBtns = document.querySelectorAll('.category-icon-btn');
-                const supportedConv = document.querySelector('.supported-conversions');
-
-                if (categoryNav && categoryNav.classList.contains('show')) {
-                    categoryNav.classList.remove('show');
-                    if (convExpandBtn) {
-                        convExpandBtn.classList.remove('expanded');
-                    }
-                    categoryBtns.forEach(btn => btn.classList.remove('active'));
-
-                    // Also hide conversion categories and supported conversions
-                    const allCategories = document.querySelectorAll('.conversion-category');
-                    allCategories.forEach(cat => {
-                        cat.classList.remove('active');
-                        cat.classList.remove('show-badges');
-                    });
-                    if (supportedConv) {
-                        supportedConv.style.display = 'none';
-                    }
-                }
+                closeOtherPanels('downloader'); // Close others first
 
                 platformIconsNav.classList.toggle('show');
                 if (downloaderExpandBtn) {
                     downloaderExpandBtn.classList.toggle('expanded');
                 }
 
-                // If hiding, remove active states
                 if (!platformIconsNav.classList.contains('show')) {
                     platformIconBtns.forEach(btn => btn.classList.remove('active'));
                 }
             }
         }
 
-        // Downloader + button click
         if (downloaderExpandBtn) {
             downloaderExpandBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2372,16 +2457,51 @@
             });
         }
 
-        // Downloader logo click - Removed (now just a link to downloader.hqmx.net)
+        // --- GENERATOR EXPAND FUNCTIONALITY ---
+        const generatorExpandBtn = document.getElementById('generatorExpandBtn');
+        const generatorLinksNav = document.querySelector('.generator-links-nav');
 
-        // Platform icon button click - handled by <a> tag href attributes
-        // Each platform button is wrapped in <a> tag with correct URL:
-        // - Instagram → https://instagram.hqmx.net
-        // - TikTok → https://tiktok.hqmx.net
-        // - Facebook → https://facebook.hqmx.net
-        // - Twitter → https://twitter.hqmx.net
-        // - etc.
-        // No JavaScript handler needed - browser handles navigation automatically
+        function toggleGeneratorIcons() {
+            if (generatorLinksNav) {
+                closeOtherPanels('generator'); // Close others first
+
+                generatorLinksNav.classList.toggle('show');
+                if (generatorExpandBtn) {
+                    generatorExpandBtn.classList.toggle('expanded');
+                }
+            }
+        }
+
+        if (generatorExpandBtn) {
+            generatorExpandBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleGeneratorIcons();
+            });
+        }
+
+        // --- CALCULATOR EXPAND FUNCTIONALITY ---
+        const calculatorExpandBtn = document.getElementById('calculatorExpandBtn');
+        const calculatorLinksNav = document.querySelector('.calculator-links-nav');
+
+        function toggleCalculatorIcons() {
+            if (calculatorLinksNav) {
+                closeOtherPanels('calculator'); // Close others first
+
+                calculatorLinksNav.classList.toggle('show');
+                if (calculatorExpandBtn) {
+                    calculatorExpandBtn.classList.toggle('expanded');
+                }
+            }
+        }
+
+        if (calculatorExpandBtn) {
+            calculatorExpandBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleCalculatorIcons();
+            });
+        }
 
     </script>
 </body>
