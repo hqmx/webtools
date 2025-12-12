@@ -11,6 +11,6 @@
     </linearGradient>
   </defs>
   <text x="10" y="38" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" letter-spacing="1">
-    <tspan fill="url(#calculator-gradient)" font-size="36">C</tspan><tspan fill="#282828f8" font-size="26" dy="-3">ALCULATOR</tspan>
+    <tspan fill="url(#calculator-gradient)" font-size="36">C</tspan><tspan fill="#282828ff" font-size="26" dy="-3">ALCULATOR</tspan>
   </text>
 </svg>
